@@ -1,0 +1,186 @@
+<!-- ============================================================ -->
+<!-- 区块：桌宠主窗口容器 -->
+<!-- ============================================================ -->
+
+<div id="pet-companion-window" class="pet-window">
+    <!-- 拖拽手柄区域 -->
+    <div class="pet-drag-handle">
+        <div class="pet-title">
+            <span class="pet-name">小宠物</span>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 区块结束：桌宠主窗口容器 -->
+    <!-- ============================================================ -->
+
+
+    <!-- ============================================================ -->
+    <!-- 区块：Canvas 渲染区域 -->
+    <!-- ============================================================ -->
+
+    <div class="pet-canvas-container">
+        <canvas id="pet-canvas" width="400" height="400"></canvas>
+        
+        <!-- 对话气泡 -->
+        <div id="pet-speech-bubble" class="pet-speech-bubble" style="display: none;">
+            <div class="speech-bubble-content"></div>
+            <div class="speech-bubble-arrow"></div>
+        </div>
+
+        <!-- 状态显示 -->
+        <div class="pet-status-overlay">
+            <div class="status-bar">
+                <span class="status-icon">❤️</span>
+                <div class="status-progress">
+                    <div id="mood-bar" class="progress-fill mood"></div>
+                </div>
+                <span class="status-value" id="mood-value">100</span>
+            </div>
+            <div class="status-bar">
+                <span class="status-icon">🍖</span>
+                <div class="status-progress">
+                    <div id="hunger-bar" class="progress-fill hunger"></div>
+                </div>
+                <span class="status-value" id="hunger-value">50</span>
+            </div>
+            <div class="status-bar">
+                <span class="status-icon">⭐</span>
+                <div class="status-progress">
+                    <div id="intimacy-bar" class="progress-fill intimacy"></div>
+                </div>
+                <span class="status-value" id="intimacy-value">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 区块结束：Canvas 渲染区域 -->
+    <!-- ============================================================ -->
+
+
+    <!-- ============================================================ -->
+    <!-- 区块：控制按钮栏 -->
+    <!-- ============================================================ -->
+
+    <div class="pet-controls">
+        <button id="pet-feed-btn" class="pet-btn" title="喂食">
+            <span class="btn-icon">🍖</span>
+        </button>
+        <button id="pet-play-btn" class="pet-btn" title="玩耍">
+            <span class="btn-icon">🎮</span>
+        </button>
+        <button id="pet-chat-btn" class="pet-btn" title="聊天">
+            <span class="btn-icon">💬</span>
+        </button>
+        <button id="pet-customize-btn" class="pet-btn" title="捏人">
+            <span class="btn-icon">✨</span>
+        </button>
+        <button id="pet-settings-btn" class="pet-btn" title="设置">
+            <span class="btn-icon">⚙️</span>
+        </button>
+        <button id="pet-close-btn" class="pet-btn pet-btn-close" title="关闭">
+            <span class="btn-icon">✖️</span>
+        </button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 区块结束：控制按钮栏 -->
+    <!-- ============================================================ -->
+</div>
+
+<!-- ============================================================ -->
+<!-- 区块：捏人编辑器模态框 -->
+<!-- ============================================================ -->
+
+<div id="pet-editor-modal" class="pet-modal" style="display: none;">
+    <div class="pet-modal-content">
+        <div class="pet-modal-header">
+            <h2>角色编辑器</h2>
+            <button class="pet-modal-close">&times;</button>
+        </div>
+        
+        <div class="pet-modal-body">
+            <div class="editor-layout">
+                <!-- 左侧：图层分类 -->
+                <div class="editor-sidebar">
+                    <div class="editor-tabs">
+                        <button class="editor-tab active" data-category="base">基础</button>
+                        <button class="editor-tab" data-category="hair">发型</button>
+                        <button class="editor-tab" data-category="face">表情</button>
+                        <button class="editor-tab" data-category="clothes">服装</button>
+                        <button class="editor-tab" data-category="accessories">配件</button>
+                    </div>
+                    
+                    <div class="editor-layer-list" id="editor-layer-list">
+                        <!-- 动态生成图层列表 -->
+                    </div>
+                    
+                    <div class="editor-upload">
+                        <input type="file" id="layer-upload-input" accept="image/png,image/jpeg" style="display: none;">
+                        <button id="layer-upload-btn" class="pet-btn-primary">
+                            📤 上传自定义图层
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 右侧：预览区域 -->
+                <div class="editor-preview">
+                    <canvas id="editor-preview-canvas" width="400" height="400"></canvas>
+                    <div class="editor-info">
+                        <input type="text" id="pet-name-input" placeholder="宠物名字" maxlength="20">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pet-modal-footer">
+            <button id="editor-save-btn" class="pet-btn-primary">保存</button>
+            <button id="editor-cancel-btn" class="pet-btn-secondary">取消</button>
+            <button id="editor-export-btn" class="pet-btn-secondary">导出配置</button>
+            <button id="editor-import-btn" class="pet-btn-secondary">导入配置</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 区块结束：捏人编辑器模态框 -->
+<!-- ============================================================ -->
+
+
+<!-- ============================================================ -->
+<!-- 区块：游戏面板模态框 -->
+<!-- ============================================================ -->
+
+<div id="pet-game-modal" class="pet-modal" style="display: none;">
+    <div class="pet-modal-content">
+        <div class="pet-modal-header">
+            <h2>小游戏</h2>
+            <button class="pet-modal-close">&times;</button>
+        </div>
+        
+        <div class="pet-modal-body">
+            <div class="game-menu">
+                <button class="game-card" data-game="whack-a-mole">
+                    <div class="game-icon">🔨</div>
+                    <div class="game-title">打地鼠</div>
+                    <div class="game-desc">考验你的反应速度！</div>
+                </button>
+                <button class="game-card" data-game="memory-card">
+                    <div class="game-icon">🃏</div>
+                    <div class="game-title">记忆翻牌</div>
+                    <div class="game-desc">挑战你的记忆力！</div>
+                </button>
+            </div>
+            
+            <!-- 游戏容器 -->
+            <div id="game-container" style="display: none;">
+                <!-- 游戏内容动态加载 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 区块结束：游戏面板模态框 -->
+<!-- ============================================================ -->
