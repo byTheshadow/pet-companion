@@ -1,0 +1,627 @@
+/* ============================================================ */
+/* 区块：桌宠窗口基础样式 */
+/* ============================================================ */
+
+.pet-window {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 420px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.pet-window.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+/* ============================================================ */
+/* 区块结束：桌宠窗口基础样式 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：拖拽手柄 */
+/* ============================================================ */
+
+.pet-drag-handle {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    cursor: grab;
+    user-select: none;
+    backdrop-filter: blur(10px);
+}
+
+.pet-drag-handle:active {
+    cursor: grabbing;
+}
+
+.pet-title {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+}
+
+.pet-name {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================ */
+/* 区块结束：拖拽手柄 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：Canvas 容器 */
+/* ============================================================ */
+
+.pet-canvas-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 10px auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#pet-canvas {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#pet-canvas:hover {
+    transform: scale(1.02);
+}
+
+#pet-canvas:active {
+    transform: scale(0.98);
+}
+
+/* ============================================================ */
+/* 区块结束：Canvas 容器 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：对话气泡 */
+/* ============================================================ */
+
+.pet-speech-bubble {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    background: white;
+    border-radius: 15px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: bubblePop 0.3s ease;
+    z-index: 10;
+}
+
+.speech-bubble-content {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.speech-bubble-arrow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+}
+
+@keyframes bubblePop {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* ============================================================ */
+/* 区块结束：对话气泡 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：状态显示 */
+/* ============================================================ */
+
+.pet-status-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 8px;
+    backdrop-filter: blur(5px);
+}
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 8px;
+}
+
+.status-bar:last-child {
+    margin-bottom: 0;
+}
+
+.status-icon {
+    font-size: 16px;
+    width: 24px;
+    text-align: center;
+}
+
+.status-progress {
+    flex: 1;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 6px;
+}
+
+.progress-fill.mood {
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+}
+
+.progress-fill.hunger {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.progress-fill.intimacy {
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.status-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    min-width: 30px;
+    text-align: right;
+}
+
+/* ============================================================ */
+/* 区块结束：状态显示 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：控制按钮 */
+/* ============================================================ */
+
+.pet-controls {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.pet-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 12px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pet-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: white;
+}
+
+.pet-btn:active {
+    transform: translateY(0);
+}
+
+.pet-btn-close {
+    background: rgba(255, 59, 48, 0.9);
+}
+
+.pet-btn-close:hover {
+    background: rgba(255, 59, 48, 1);
+}
+
+.btn-icon {
+    font-size: 24px;
+}
+
+/* ============================================================ */
+/* 区块结束：控制按钮 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：模态框基础样式 */
+/* ============================================================ */
+
+.pet-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.pet-modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.pet-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.pet-modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.pet-modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.pet-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.pet-modal-body {
+    padding: 25px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.pet-modal-footer {
+    padding: 15px 25px;
+    background: #f5f5f5;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* ============================================================ */
+/* 区块结束：模态框基础样式 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：编辑器布局 */
+/* ============================================================ */
+
+.editor-layout {
+    display: flex;
+    gap: 20px;
+    min-height: 500px;
+}
+
+.editor-sidebar {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.editor-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.editor-tab {
+    background: #f0f0f0;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.editor-tab:hover {
+    background: #e0e0e0;
+}
+
+.editor-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.editor-layer-list {
+    flex: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 5px;
+}
+
+.layer-item {
+    aspect-ratio: 1;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer-item:hover {
+    border-color: #667eea;
+    transform: scale(1.05);
+}
+
+.layer-item.selected {
+    border-color: #667eea;
+    border-width: 3px;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.layer-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.editor-upload {
+    margin-top: auto;
+}
+
+.editor-preview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#editor-preview-canvas {
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    background: white;
+}
+
+.editor-info {
+    width: 100%;
+}
+
+#pet-name-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+#pet-name-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* ============================================================ */
+/* 区块结束：编辑器布局 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：按钮样式 */
+/* ============================================================ */
+
+.pet-btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.pet-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.pet-btn-primary:active {
+    transform: translateY(0);
+}
+
+.pet-btn-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pet-btn-secondary:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* ============================================================ */
+/* 区块结束：按钮样式 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：游戏菜单 */
+/* ============================================================ */
+
+.game-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: none;
+    border-radius: 15px;
+    padding: 30px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.game-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.game-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.game-desc {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ============================================================ */
+/* 区块结束：游戏菜单 */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* 区块：响应式设计 */
+/* ============================================================ */
+
+@media (max-width: 768px) {
+    .pet-window {
+        width: 90%;
+        right: 5%;
+    }
+    
+    .pet-canvas-container {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+    }
+    
+    #pet-canvas {
+        width: 100%;
+        height: auto;
+    }
+    
+    .editor-layout {
+        flex-direction: column;
+    }
+    
+    .editor-sidebar {
+        width: 100%;
+    }
+}
+
+/* ============================================================ */
+/* 区块结束：响应式设计 */
+/* ============================================================ */
